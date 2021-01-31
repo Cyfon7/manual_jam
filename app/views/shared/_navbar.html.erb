@@ -17,9 +17,16 @@
 
             <li><%=link_to 'Create Post', new_post_path %></li>
             <li><a href="#">My Posts</a></li>
-            <li><a href="<%= user_path(params[:id]) %>" >My Profile</a></li>
+            <li><a href="<%= user_path(session[:id]) %>" >My Profile</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Sign Out</a></li>
+            <li>
+              <% if current_user %>
+                <%= link_to 'Sign Out', session_path(current_user), method: :delete %>
+              <% else %>
+                <%= link_to 'Sign In', new_session_path %>
+              <% end %>
+            </li>
+
           </ul>
         </li>
       </ul>
