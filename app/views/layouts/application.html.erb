@@ -16,6 +16,11 @@
 <body>
  <%= render 'shared/navbar' %>
  <div class="container">
+
+    <% flash.each do | _ , value| %>
+      <div><%= value %></div>
+    <% end %>
+
       <%= yield %>
  </div>
 </body>
