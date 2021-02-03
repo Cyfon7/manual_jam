@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(post_params.merge(user_id: current_user.id))
     # PENDING Add the current user to post
 
     respond_to do |format|
@@ -71,6 +71,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :image)
+      params.require(:post).permit(:title, :content, :image, :user_id)
     end
 end
